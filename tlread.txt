@@ -1,0 +1,11 @@
+Message
+[]
+Chat
+[]
+User
+[]
+
+TODO
+List ^
+Updates
+UpdateNewMessage
