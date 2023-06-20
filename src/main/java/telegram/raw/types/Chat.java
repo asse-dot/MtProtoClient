@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class Chat extends TlObject {
 
-    private final int ID = 0x41cbf256;
+    public static final int ID = 0x41cbf256;
 
     public long id;
     public String title;

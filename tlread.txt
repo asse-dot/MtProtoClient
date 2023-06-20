@@ -9,3 +9,68 @@ TODO
 List ^
 Updates
 UpdateNewMessage
+
+
+{-79, -5, -44, 48, 17, 65, -54, 82, -110, 15, -18, 66, -45, -58, 92, -50, -125, -16, -71, 99, 43, -106, -1, 116, -90, -24, 19, -112, 21, 84, 86, -21, 121, -79, -3, 112, -26, -30, 103, 116, -17, 124, -53, -39, -91, 13, 60, -74, 67, 92, -125, 27, 92, 6, 9, -124, 81, 77, 98, 24, -103, 60, 44, -85, 65, -61, 34, 22, -73, 121, -94, 102, -21, 115, 75, 64, 26, -25, 43, 24, 114, 60, -25, -82, -18, 101, -73, 17, -79, -61, 7, -52, -2, -78, -117, -33, -83, 117, -12, 115, 72, 24, -11, -57, -9, -4, 55, -49, 28, -107, -42, -84, 38, 55, 41, 66, -3, -117, -92, 118, 83, 48, 51, -78, -26, -122, 91, 10, 66, 32, 96, -69, 127, -44, -83, 60, 9, 20, -100, -93, -48, -29, -91, -64, -99, -121, -66, -31, -117, -69, -18, 88, 106, 70, 53, -120, 14, 46, 38, 28, 102, -117, 14, -94, -55, 15, 6, 22, 92, 117, 15, 105, 26, 7, 26, 61, 42, 29, 32, 63, -26, 97, 87, -105, 28, 79, -49, 95, 11, 75, -63, -98, -13, -25, -126, -53, 120, -101, -107, 20, 7, -17, -3, 54, 61, 93, 113, 20, -110, -94, -70, -4, -30, 100, -72, 88, -33, -92, 78, -68, -43, 25, 64, 31, 11, -8, 52, 126, 76, -33, 45, -103, 122, 30, 4, -1, -4, 93, 107, 11, -93, -125, -99, 83, -5, 60, -114, 49, -122, 76, -5, 13, 126, -82, -61, -47};
+
+
+
+
+              case 0xd0e8075c:
+//                return ServerDHParamsOk.read(bytes);
+//            case 0xb5890dba:
+//                return ServerDHInnerData.read(bytes);
+//            case 0xedab447b:
+//                return BadServerSalt.read(bytes);
+//            case 0xf35c6d01:
+//                return RpcResult.read(bytes);
+//            case 0x8f97c628:
+//                return User.read(bytes);
+//            case 0x74ae4240:
+//                return Updates.read(bytes);
+//            case 0x1f2b0afd:
+//                return UpdateNewMessage.read(bytes);
+//            case 0x38116ee0:
+//                return Message.read(bytes);
+//            case 0x59511722:
+//                return PeerUser.read(bytes);
+//            case 0x761e6af4:
+//                return MessageEntityBankCard.read(bytes);
+//            case 0x20df5d0:
+//                return MessageEntityBlockquote.read(bytes);
+//            case 0xbd610bc9:
+//                return MessageEntityBold.read(bytes);
+//            case 0x6cef8ac7:
+//                return MessageEntityBotCommand.read(bytes);
+//            case 0x4c4e743f:
+//                return MessageEntityCashtag.read(bytes);
+//            case 0x28a20571:
+//                return MessageEntityCode.read(bytes);
+//            case 0xc8cf05f8:
+//                return MessageEntityCustomEmoji.read(bytes);
+//            case 0x64e475c2:
+//                return MessageEntityEmail.read(bytes);
+//            case 0x6f635b0d:
+//                return MessageEntityHashtag.read(bytes);
+//            case 0x826f8b60:
+//                return MessageEntityItalic.read(bytes);
+//            case 0xfa04579d:
+//                return MessageEntityMention.read(bytes);
+//            case 0xdc7b1140:
+//                return MessageEntityMentionName.read(bytes);
+//            case 0x9b69e34b:
+//                return MessageEntityPhone.read(bytes);
+//            case 0x73924be0:
+//                return MessageEntityPre.read(bytes);
+//            case 0x32ca960f:
+//                return MessageEntitySpoiler.read(bytes);
+//            case 0xbf0693d4:
+//                return MessageEntityStrike.read(bytes);
+//            case 0x76a6d327:
+//                return MessageEntityTextUrl.read(bytes);
+//            case 0x9c4e7e8b:
+//                return MessageEntityUnderline.read(bytes);
+//            case 0xbb92ba95:
+//                return MessageEntityUnknown.read(bytes);
+//            case 0x6ed02538:
+//                return MessageEntityUrl.read(bytes);

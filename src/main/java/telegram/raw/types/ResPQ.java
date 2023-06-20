@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class ResPQ extends TlObject {
 
-    private final int ID = 0x05162463;
+    public static final int ID = 0x05162463;
 
     public BigInteger nonce;
     public BigInteger server_nonce;

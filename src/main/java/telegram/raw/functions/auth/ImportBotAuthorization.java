@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class ImportBotAuthorization extends TlObject {
 
-    private final int ID = 0x67a3ff2c;
+    public static final int ID = 0x67a3ff2c;
 
     public int flags;
     public int api_id;
@@ -27,7 +27,7 @@ public class ImportBotAuthorization extends TlObject {
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntPrimitive(this.flags).write());
         bOut.write(new IntPrimitive(this.api_id).write());
         bOut.write(new StringPrimitive(this.api_hash).write());

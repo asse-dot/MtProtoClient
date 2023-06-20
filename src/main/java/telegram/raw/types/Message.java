@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class Message extends TlObject {
 
-    private final int ID = 0x38116ee0;
+    public static final int ID = 0x38116ee0;
 
     public int id;
     public TlObject peer_id;
@@ -106,7 +106,7 @@ public class Message extends TlObject {
         String message = StringPrimitive.read(bytes).getValue();
         TlObject media = (flags & (1 << 9)) != 0 ? TlObject.read(bytes) : null;
         TlObject reply_markup = (flags & (1 << 6)) != 0 ? TlObject.read(bytes) : null;
-        ArrayList<TlObject> entities = (flags & (1 << 7)) != 0 ? VectorPrimitive.read(bytes).getValue() : null;
+        ArrayList<TlObject> entities = (flags & (1 << 7)) != 0 ? ((VectorPrimitive)TlObject.read(bytes)).getValue() : null;
 
         int views = (flags & (1 << 10)) != 0 ? IntPrimitive.read(bytes).getValue() : 0;
         int forwards = (flags & (1 << 10)) != 0 ? IntPrimitive.read(bytes).getValue() : 0;

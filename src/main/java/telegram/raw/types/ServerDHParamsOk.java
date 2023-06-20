@@ -10,7 +10,7 @@ import java.math.BigInteger;
 
 public class ServerDHParamsOk extends TlObject {
 
-    private final int ID = 0xd0e8075c;
+    public static final int ID = 0xd0e8075c;
 
     public BigInteger nonce;
     public BigInteger server_nonce;

@@ -9,16 +9,7 @@ import java.io.IOException;
 
 public class InitConnection extends TlObject{
 
-//    self.api_id = api_id  # int
-//    self.device_model = device_model  # string
-//    self.system_version = system_version  # string
-//    self.app_version = app_version  # string
-//    self.system_lang_code = system_lang_code  # string
-//    self.lang_pack = lang_pack  # string
-//    self.lang_code = lang_code  # string
-//    self.query = query  # !X
-
-    private final int ID = 0xc1cd5ea9;
+    public static final int ID = 0xc1cd5ea9;
 
     public int api_id;
     public String device_model;
@@ -46,7 +37,7 @@ public class InitConnection extends TlObject{
         int flags = 0;
         flags |= 0;
         flags |= 0;
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntPrimitive(flags).write()); //flags
 
         bOut.write(new IntPrimitive(this.api_id).write());

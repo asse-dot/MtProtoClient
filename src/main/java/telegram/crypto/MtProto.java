@@ -56,7 +56,7 @@ public class MtProto {
     }
 
     //TODO unpack
-    public static Message unpack(byte[] data, byte[] auth_key) {
+    public static Message unpack(byte[] data, byte[] auth_key) throws IOException {
 
         byte[] msg_key = Utils.subStr(data, 8, 16);
 
@@ -82,11 +82,9 @@ public class MtProto {
 //        }
         ByteArrayInputStream bIn = new ByteArrayInputStream(plaintext);
         bIn.skip(16);
-        try {
-            return Message.read(bIn);
-        } catch (IOException e) {
-           return null;
-        }
+
+        return Message.read(bIn);
+
     }
 
 }

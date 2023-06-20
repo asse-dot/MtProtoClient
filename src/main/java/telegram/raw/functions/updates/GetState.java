@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class GetState extends TlObject {
 
-    private final int ID = 0xedd4882a;
+    public static final int ID = 0xedd4882a;
 
     public GetState() {}
 
@@ -20,7 +20,7 @@ public class GetState extends TlObject {
     @Override
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
 
         return bOut.toByteArray();
     }

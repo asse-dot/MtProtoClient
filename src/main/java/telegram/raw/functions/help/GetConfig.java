@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class GetConfig extends TlObject {
 
-    private final int ID = 0xc4f9186b;
+    public static final int ID = 0xc4f9186b;
 
     public GetConfig() {}
 
@@ -16,7 +16,7 @@ public class GetConfig extends TlObject {
     @Override
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
 
         return bOut.toByteArray();
     }

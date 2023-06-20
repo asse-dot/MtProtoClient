@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class Updates extends TlObject {
 
-    private final int ID = 0x74ae4240;
+    public static final int ID = 0x74ae4240;
 
     public ArrayList<TlObject> updates;
     public ArrayList<TlObject> users;

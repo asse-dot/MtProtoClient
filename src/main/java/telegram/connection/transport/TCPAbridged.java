@@ -44,13 +44,19 @@ public class TCPAbridged extends TCP {
     public byte[] read() {
         int length;
 
-        byte temp = super.read(1)[0];
+        byte[] temp = super.read(1);
 
-        if(temp == 0x7f) {
+        if(temp == null)
+            return null;
+
+        if(temp[0] == 0x7f) {
             byte[] byte_length = super.read(3);
+            if(byte_length == null)
+                return null;
+
             length = ((byte_length[2] & 0xFF) << 16) | ((byte_length[1] & 0xFF) << 8) | (byte_length[0] & 0xFF);
         } else {
-            length = temp;
+            length = temp[0];
         }
 
         return super.read(length * 4);

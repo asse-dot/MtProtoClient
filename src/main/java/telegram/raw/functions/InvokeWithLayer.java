@@ -10,7 +10,7 @@ import java.io.IOException;
 public class InvokeWithLayer extends TlObject{
 
     //0xda9b0d0d
-    private final int ID = 0xda9b0d0d;
+    public static final int ID = 0xda9b0d0d;
 
     public int layer;
     public TlObject query;
@@ -25,7 +25,7 @@ public class InvokeWithLayer extends TlObject{
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntPrimitive(this.layer).write());
         bOut.write(this.query.write());
 

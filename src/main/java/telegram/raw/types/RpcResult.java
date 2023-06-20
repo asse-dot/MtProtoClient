@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class RpcResult extends TlObject {
 
-    private final int ID = 0xf35c6d01;
+    public static final int ID = 0xf35c6d01;
 
     public long req_msg_id;
     public TlObject result;

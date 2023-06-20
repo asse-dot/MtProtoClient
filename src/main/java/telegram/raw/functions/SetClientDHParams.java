@@ -14,7 +14,7 @@ import java.math.BigInteger;
 public class SetClientDHParams extends TlObject {
 
     //TODO read
-    private final int ID = 0xf5045f1f;
+    public static final int ID = 0xf5045f1f;
 
     public BigInteger nonce;
     public BigInteger server_nonce;
@@ -32,7 +32,7 @@ public class SetClientDHParams extends TlObject {
 
 
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntBigPrimitive(this.nonce).write());
         bOut.write(new IntBigPrimitive(this.server_nonce).write());
         bOut.write(new BytesPrimitive(this.encrypted_data).write());

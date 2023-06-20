@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class InputPeerUser extends TlObject {
 
-    private final int ID = 0xdde8a54c;
+    public static final int ID = 0xdde8a54c;
 
     public long user_id;
     public long access_hash;
@@ -24,7 +24,7 @@ public class InputPeerUser extends TlObject {
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new LongPrimitive(this.user_id).write());
         bOut.write(new LongPrimitive(this.access_hash).write());
 

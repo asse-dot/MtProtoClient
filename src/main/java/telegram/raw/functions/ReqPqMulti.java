@@ -12,7 +12,7 @@ import java.math.BigInteger;
 public class ReqPqMulti extends TlObject {
 
 
-    private final int ID = 0xbe7e8ef1;
+    public static final int ID = 0xbe7e8ef1;
     public final BigInteger nonce; //128 bit
 
     public ReqPqMulti(BigInteger nonce) {
@@ -30,7 +30,7 @@ public class ReqPqMulti extends TlObject {
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntBigPrimitive(this.nonce).write());
         
         return bOut.toByteArray();

@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class ServerDHInnerData extends TlObject {
 
-    private final int ID = 0xb5890dba;
+    public static final int ID = 0xb5890dba;
 
     public BigInteger nonce;
     public BigInteger server_nonce;

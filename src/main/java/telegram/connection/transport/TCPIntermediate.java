@@ -35,6 +35,10 @@ public class TCPIntermediate extends TCP{
     @Override
     public byte[] read() {
         byte[] length_byte = super.read(4);
+
+        if(length_byte == null)
+            return null;
+
         int length = ((length_byte[3] & 0xFF) << 24) | ((length_byte[2] & 0xFF) << 16) | ((length_byte[1] & 0xFF) << 8) | (length_byte[0] & 0xFF);
 
         return super.read(length);

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketException;
 
 public abstract class TCP extends TransportProtocol {
 
@@ -41,6 +42,8 @@ public abstract class TCP extends TransportProtocol {
                 int length_data = this.inputStream.read(buffer);
                 System.arraycopy(buffer, 0, data, byte_read, length_data);
                 byte_read += length_data;
+            } catch(SocketException e) {
+                return null;
             } catch(IOException e) {
                 e.printStackTrace();
                 return null;

@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class UpdateNewMessage extends TlObject {
 
-    private final int ID = 0x1f2b0afd;
+    public static final int ID = 0x1f2b0afd;
 
     public TlObject message;
     public int pts;

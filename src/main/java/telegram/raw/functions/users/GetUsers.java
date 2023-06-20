@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class GetUsers extends TlObject {
 
-    private final int ID = 0xd91a548;
+    public static final int ID = 0xd91a548;
 
     public ArrayList<TlObject> id;
 
@@ -24,7 +24,7 @@ public class GetUsers extends TlObject {
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new VectorPrimitive(this.id).write());
 
         return bOut.toByteArray();

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 public class VectorPrimitive extends TlObject {
 
-    private final int ID = 0x1cb5c415;
+    public final static int ID = 0x1cb5c415;
 
     private ArrayList<TlObject> value;
 
@@ -41,8 +41,6 @@ public class VectorPrimitive extends TlObject {
         if(length == 0) {
             return new VectorPrimitive(new ArrayList<TlObject>());
         }
-        //System.out.println("length: " + length);
-
 
         int bytes_left = bytes.available();
         int size = bytes_left / length;
@@ -77,7 +75,7 @@ public class VectorPrimitive extends TlObject {
     @Override
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntPrimitive(this.value.size()).write());
         for(TlObject tlObject : this.value) {
             bOut.write(tlObject.write());

@@ -12,7 +12,7 @@ import java.io.IOException;
 
 public class SendMessage extends TlObject {
 
-    private final int ID = 0x1cc20387;
+    public static final int ID = 0x1cc20387;
 
     //TODO DA SISTEMARE PER TUTTI GLI INPUTPEER (CHAT, USER ETC..)
     public InputPeerUser peer;
@@ -32,7 +32,7 @@ public class SendMessage extends TlObject {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
         int flags = 0;
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new IntPrimitive(flags).write());
         bOut.write(peer.write());
         bOut.write(new StringPrimitive(this.message).write());

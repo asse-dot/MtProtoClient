@@ -9,7 +9,7 @@ import java.io.IOException;
 
 public class BadServerSalt extends TlObject {
 
-    private final int ID = 0xedab447b;
+    public  static final int ID = 0xedab447b;
 
     public long bad_msg_id;
     public int bad_msg_seqno;

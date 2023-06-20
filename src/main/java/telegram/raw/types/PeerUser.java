@@ -8,7 +8,7 @@ import java.io.IOException;
 
 public class PeerUser extends TlObject {
 
-    private final int ID = 0x59511722;
+    public static final int ID = 0x59511722;
 
     public long user_id;
 

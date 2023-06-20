@@ -11,7 +11,7 @@ import java.math.BigInteger;
 
 public class PQInnerData extends TlObject {
     //0x83c95aec
-    private final int ID = 0x83c95aec;
+    public static final int ID = 0x83c95aec;
 
     public byte[] pq;
     public byte[] p;
@@ -38,7 +38,7 @@ public class PQInnerData extends TlObject {
     public byte[] write() throws IOException {
         ByteArrayOutputStream bOut = new ByteArrayOutputStream();
 
-        bOut.write(new IntPrimitive(this.ID).write());
+        bOut.write(new IntPrimitive(ID).write());
         bOut.write(new BytesPrimitive(this.pq).write());
         bOut.write(new BytesPrimitive(this.p).write());
         bOut.write(new BytesPrimitive(this.q).write());

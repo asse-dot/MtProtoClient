@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class User extends TlObject {
 
-    private final int ID = 0x8f97c628;
+    public static final int ID = 0x8f97c628;
 
     public long id;
     public boolean is_self;
