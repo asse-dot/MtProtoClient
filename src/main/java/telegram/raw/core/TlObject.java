@@ -3,8 +3,10 @@ package telegram.raw.core;
 import telegram.raw.core.primitives.VectorPrimitive;
 import telegram.raw.core.primitives.integers.IntPrimitive;
 import telegram.raw.functions.ReqPqMulti;
+import telegram.raw.functions.messages.SendMessage;
 import telegram.raw.types.*;
 import telegram.raw.types.Message;
+import telegram.session.EventUpdates;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -59,16 +61,15 @@ public abstract class TlObject {
             return (TlObject) objects.get(IntPrimitive.read(bytes).getValue()).getMethod("read", ByteArrayInputStream.class).invoke(null, bytes);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
-            return null;
         } catch (InvocationTargetException e) {
             e.printStackTrace();
-            return null;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-            return null;
         } catch(NullPointerException e) {
-            return null;
+
         }
+
+        return null;
     }
 
     public int getLength() {

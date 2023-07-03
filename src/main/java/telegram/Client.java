@@ -1,5 +1,9 @@
 package telegram;
 
+import telegram.listeners.Listener;
+import telegram.listeners.MessageEventUpdate;
+import telegram.listeners.MessageListener;
+import telegram.listeners.ParsedUpdate;
 import telegram.raw.core.TlObject;
 import telegram.raw.core.primitives.VectorPrimitive;
 import telegram.raw.functions.messages.SendMessage;
@@ -10,15 +14,29 @@ import telegram.session.Session;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.lang.reflect.Method;
+import java.util.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Client {
 
     private Session session;
+    private List<Listener> listeners;
+    private ExecutorService executorService;
+
+    private static Map<Class<? extends TlObject>, List<Class<?>>>  map = new HashMap<>();
+    private static List<Class<?>> messages = new ArrayList<>();
+
+    static {
+        messages.add(MessageListener.class);
+        messages.add(MessageEventUpdate.class);
+        map.put(UpdateNewMessage.class, messages);
+    }
 
     public Client() {
+        this.listeners = new LinkedList<>();
+        this.executorService = Executors.newFixedThreadPool(10);
         File file = new File("bot.session");
         byte[] auth_key = new byte[256];
         if(file.exists()) {
@@ -48,8 +66,6 @@ public class Client {
 //            e.printStackTrace();
 //        }
         this.session = new Session(this, auth_key);
-
-
 
     }
 
@@ -101,27 +117,40 @@ public class Client {
         }
     }
 
+    public void addListener(Listener listener) {
+        this.listeners.add(listener);
+    }
 
-    public void handleUpdate(Updates update) {
-        UpdateNewMessage message = ((UpdateNewMessage)update.updates.get(0));
-        User user = ((User)update.users.get(0));
-        Message message_update = (Message)message.message;
-        String string_message = message_update.message;
-        if(message_update.entities != null) {
-            TlObject ent = message_update.entities.get(0);
-            Class<MessageEntityBold> clazz = MessageEntityBold.class;
+    private void notifyUpdate(TlObject update, List<TlObject> users) {
+        Class listenerType = map.get(update.getClass()).get(0);
+        Class parsedUpdateType = map.get(update.getClass()).get(1);
+        for(Listener listener : this.listeners) {
 
-            if (clazz.isInstance(ent)) {
-                MessageEntityBold bold = (MessageEntityBold) ent;
-                System.out.println("bold");
-                System.out.println(bold.offset);
-                System.out.println(bold.length);
+            if(listenerType.isInstance(listener)) {
+                try {
+                    ParsedUpdate parsedUpdate = (ParsedUpdate) parsedUpdateType.getMethod("parse", TlObject.class, List.class).invoke(null, update, users);
+
+                    Method task = listenerType.getMethod("invoke", parsedUpdateType);
+                    this.executorService.submit(() -> task.invoke(listener, parsedUpdateType.cast(parsedUpdate)));
+                } catch (IllegalAccessException e) {
+                    e.printStackTrace();
+                } catch (InvocationTargetException e) {
+                    e.printStackTrace();
+                } catch (NoSuchMethodException e) {
+                    e.printStackTrace();
+                }
+
             }
         }
-        long id_user = user.id;
 
-        Thread thread = new Thread(() -> this.test(id_user, string_message));
-        thread.start();
+    }
+
+
+    public void handleUpdate(Updates updates) {
+        TlObject update = updates.updates.get(0);
+        List<TlObject> users = updates.users;
+
+        this.notifyUpdate(update, users);
     }
 
 
