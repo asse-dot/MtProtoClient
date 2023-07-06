@@ -1,1 +1,6 @@
 /target
+
+main.py
+schema.json
+text_writer.txt
+gen_tlfile.py

@@ -15,6 +15,7 @@ import telegram.raw.types.Updates;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.net.SocketException;
+import java.util.Arrays;
 import java.util.HashMap;
 
 public class SessionWorker implements Runnable{
@@ -35,9 +36,6 @@ public class SessionWorker implements Runnable{
         this.running = true;
     }
 
-    public void test(String message, long id) {
-        System.out.println(message);
-    }
 
     private void handlePacket(byte[] packet) {
 
@@ -78,7 +76,6 @@ public class SessionWorker implements Runnable{
         while(this.running) {
 
             byte[] data = this.connection.read();
-
             if(data == null)
                 continue;
 
@@ -86,6 +83,9 @@ public class SessionWorker implements Runnable{
                 try {
                     int error_code = IntPrimitive.read(new ByteArrayInputStream(data)).getValue();
                     System.out.println("Error code: " + error_code);
+                    for(Long event : this.results.keySet()) {
+                        this.results.get(event).set();
+                    }
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

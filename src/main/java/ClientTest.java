@@ -1,5 +1,7 @@
 import telegram.Client;
-import telegram.TestListener;
+
+import java.io.File;
+//import telegram.TestListener;
 
 public class ClientTest {
     public static void main(String[] args) {
@@ -10,8 +12,13 @@ public class ClientTest {
 
         client.addListener(new TestListener(client)); //Add listener for handle update
 
-        client.start(); //Init connection with a specific dc of telegram (Default: 2)
 
+
+        client.start(); //Init connection with a specific dc of telegram (Default: 2)ù
+        client.sendMessage("started", 5402433797L);
+        //client.sendPhoto(new File("statistica_correzione.jpg"), 5402433797L);
+//        client.sendMessage("2", 5402433797L);
+//        client.sendPhoto(new File("statistica_correzione.jpg"), 5402433797L);
         client.idle(); //Handle all update from telegram
 
         client.stop(); //stop connection

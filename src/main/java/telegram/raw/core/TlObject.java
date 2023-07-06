@@ -2,11 +2,14 @@ package telegram.raw.core;
 
 import telegram.raw.core.primitives.VectorPrimitive;
 import telegram.raw.core.primitives.integers.IntPrimitive;
-import telegram.raw.functions.ReqPqMulti;
-import telegram.raw.functions.messages.SendMessage;
+import telegram.raw.functions.account.AcceptAuthorization;
+import telegram.raw.types.MessageEntityMentionName;
+import telegram.raw.types.MessageEntitySpoiler;
+import telegram.raw.types.MessageEntityUnderline;
+import telegram.raw.types.MessageEntityUrl;
 import telegram.raw.types.*;
 import telegram.raw.types.Message;
-import telegram.session.EventUpdates;
+
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
@@ -33,10 +36,8 @@ public abstract class TlObject {
         objects.put(PeerUser.ID, PeerUser.class);
         objects.put(MessageEntityBold.ID, MessageEntityBold.class);
         objects.put(MessageEntityBotCommand.ID, MessageEntityBotCommand.class);
-        objects.put(MessageEntityBankCard.ID, MessageEntityBankCard.class);
         objects.put(MessageEntityBlockquote.ID, MessageEntityBlockquote.class);
         objects.put(MessageEntityCashtag.ID, MessageEntityCashtag.class);
-        objects.put(MessageEntityCode.ID, MessageEntityCode.class);
         objects.put(MessageEntityCustomEmoji.ID, MessageEntityCustomEmoji.class);
         objects.put(MessageEntityEmail.ID, MessageEntityEmail.class);
         objects.put(MessageEntityItalic.ID, MessageEntityItalic.class);
@@ -47,10 +48,15 @@ public abstract class TlObject {
         objects.put(MessageEntityPre.ID, MessageEntityPre.class);
         objects.put(MessageEntitySpoiler.ID, MessageEntitySpoiler.class);
         objects.put(MessageEntityStrike.ID, MessageEntityStrike.class);
-        objects.put(MessageEntityTextUrl.ID, MessageEntityTextUrl.class);
         objects.put(MessageEntityUrl.ID, MessageEntityUrl.class);
         objects.put(MessageEntityUnderline.ID, MessageEntityUnderline.class);
         objects.put(MessageEntityUnknown.ID, MessageEntityUnknown.class);
+        objects.put(AcceptAuthorization.ID, AcceptAuthorization.class);
+        objects.put(GZipPacked.ID, GZipPacked.class);
+        objects.put(MessageMediaPhoto.ID, MessageMediaPhoto.class);
+        objects.put(telegram.raw.types.photos.Photo.ID, telegram.raw.types.photos.Photo.class);
+        objects.put(PhotoSize.ID, PhotoSize.class);
+        objects.put(VideoSize.ID, VideoSize.class);
     }
 
 
@@ -58,7 +64,9 @@ public abstract class TlObject {
 
     public static TlObject read(ByteArrayInputStream bytes) throws IOException {
         try {
-            return (TlObject) objects.get(IntPrimitive.read(bytes).getValue()).getMethod("read", ByteArrayInputStream.class).invoke(null, bytes);
+            int id = IntPrimitive.read(bytes).getValue();
+            System.out.println(Integer.toHexString(id));
+            return (TlObject) objects.get(id).getMethod("read", ByteArrayInputStream.class).invoke(null, bytes);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {

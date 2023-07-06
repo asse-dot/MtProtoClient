@@ -8,6 +8,7 @@ import telegram.raw.core.Message;
 import telegram.raw.core.TlObject;
 import telegram.raw.functions.InitConnection;
 import telegram.raw.functions.InvokeWithLayer;
+import telegram.raw.functions.auth.ImportBotAuthorization;
 import telegram.raw.functions.help.GetConfig;
 import telegram.raw.types.BadServerSalt;
 
@@ -64,7 +65,7 @@ public class Session {
     public long getMessageId() {
         long time = (System.currentTimeMillis() / 1000L);
         this.offsetId = this.last_time == time ? (offsetId + 4) : 0;
-        long messageId = time * (long)Math.pow(2, 32) + this.offsetId;
+        long messageId = time * (long)Math.pow(2, 32) + offsetId;
         this.last_time = time;
 
         return messageId;
@@ -73,6 +74,7 @@ public class Session {
     public void start(){
         this.connection.connect();
         this.threadWorker.start();
+
         this.send(
                 new InvokeWithLayer(158, new InitConnection(
                         13776999,
@@ -82,6 +84,8 @@ public class Session {
                         "en",
                         "",
                         "en",
+                        null,
+                        null,
                         new GetConfig()
                 ))
         );
@@ -94,14 +98,9 @@ public class Session {
 //
 //        this.send(
 //                new ImportBotAuthorization(
-//                    0, 13776999, "b6582ebcf826855345ce1155e8d42522", "6210228531:AAHoxXDFzt_J64xMfYAnQUHQWXv8_Atuw3w"
-//                ), 3
+//                   0, 13776999, "b6582ebcf826855345ce1155e8d42522", "6210228531:AAHoxXDFzt_J64xMfYAnQUHQWXv8_Atuw3w"
+//                )
 //        );
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
 //        ArrayList<TlObject> inp = new ArrayList<>();
 //        inp.add(new InputUser(5690391779L, 0));
 //        VectorPrimitive s = (VectorPrimitive) this.send(new GetUsers(inp), 3);
@@ -147,6 +146,7 @@ public class Session {
 
         if(result instanceof BadServerSalt) {
             this.salt = ((BadServerSalt)result).new_server_salt;
+            this.send(data);
         }
 
         return result;
